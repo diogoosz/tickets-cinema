@@ -1,11 +1,8 @@
 import java.text.DecimalFormat;
 
 public class IngressoFamilia extends Ingresso{
-    private int totalPessoas;
-
-    public IngressoFamilia(String nomeFilme, boolean dublado, Double valorIngresso, int totalPessoas) {
+    public IngressoFamilia(String nomeFilme, boolean dublado, Double valorIngresso) {
         super(nomeFilme, dublado, valorIngresso);
-        this.totalPessoas = totalPessoas;
     }
 
     public double calcularValor(int totalPessoas) {

@@ -10,21 +10,24 @@ public class Main {
         String nomeFilme = scanner.nextLine();
         System.out.print("Você quer assistir dublado ou legendado? ");
         String respostaDublado = scanner.nextLine();
-        boolean dublado = respostaDublado.equalsIgnoreCase("sim");
-        Ingresso ingressoComum = new Ingresso(nomeFilme, true, 30.00);
-        MeiaEntrada ingressoMeia = new MeiaEntrada("Quarteto Fantastico", dublado, 36.00);
-        IngressoFamilia ingressoFamilia = new IngressoFamilia("Shrek", dublado, 30.00, 4);
+        boolean dublado = respostaDublado.equalsIgnoreCase("dublado");
+        Ingresso ingressoComum = new Ingresso(nomeFilme, dublado, 30.00);
+        MeiaEntrada ingressoMeia = new MeiaEntrada(nomeFilme, dublado, 36.00);
+        IngressoFamilia ingressoFamilia = new IngressoFamilia(nomeFilme, dublado, 30.00);
 
         int option;
-        do {
-            System.out.print("1 - Ingresso normal");
-            System.out.print("2 - Meia Entrada");
-            System.out.print("3 - Ingresso Família");
-            System.out.print("4 - Sair");
+        while (true) {
+            System.out.println("1 - Ingresso normal");
+            System.out.println("2 - Meia Entrada");
+            System.out.println("3 - Ingresso Família");
+            System.out.println("4 - Sair");
+            option = scanner.nextInt();
+            scanner.nextLine();
 
             switch (option) {
                 case 1 -> {
                     ingressoComum.mostrarInfo();
+                    return;
                 }
                 case 2 -> {
                     System.out.print("Você é estudante? ");
@@ -32,16 +35,19 @@ public class Main {
                     boolean temDireito = isStudent.equalsIgnoreCase("sim");
                     ingressoMeia.mostrarInfo();
                     mostrarValorMeia(ingressoMeia, temDireito);
+                    return;
                 }
                 case 3 -> {
                     System.out.print("Quantas pessoas estão na sua familia? ");
                     int membrosFamilia = scanner.nextInt();
                     ingressoFamilia.mostrarInfo();
                     mostrarValorFamilia(ingressoFamilia, membrosFamilia);
+                    return;
                 }
                 case 4 -> System.exit(0);
+                default -> System.out.println("Opção inválida, tente novamente");
             }
-        } while (true);
+        }
     }
     public static void mostrarValorMeia(MeiaEntrada ingresso, boolean temDireito) {
         double valorFinal = ingresso.calcularValor(temDireito);

@@ -7,9 +7,6 @@ public class MeiaEntrada extends Ingresso{
     public double calcularValor(boolean temDireito) {
         if (temDireito) {
             return getValor() / 2;
-        } else {
-            System.out.println("Você não tem direito a meia entrada");
-            return getValor();
-        }
+        } else return getValor();
     }
 }
