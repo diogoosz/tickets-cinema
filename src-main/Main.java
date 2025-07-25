@@ -1,33 +1,41 @@
 import java.text.DecimalFormat;
+import java.util.Scanner;
 
 public class Main {
+    public static DecimalFormat df = new DecimalFormat("#0.00");
+
     public static void main(String[] args) {
-        DecimalFormat df = new DecimalFormat("#0.00");
+        Scanner scanner = new Scanner(System.in);
         Ingresso ingressoComum = new Ingresso("F1: O Filme", true, 30.00);
         MeiaEntrada ingressoMeia = new MeiaEntrada("Quarteto Fantastico", false, 36.00);
         IngressoFamilia ingressoFamilia = new IngressoFamilia("Shrek", true, 30.00, 4);
 
+        System.out.print("Quantas pessoas estão na sua familia? ");
+        int membrosFamilia = scanner.nextInt();
+        System.out.print("Você é estudante? ");
+        String isStudent = scanner.nextLine();
+        boolean temDireito = isStudent.equalsIgnoreCase("sim");
         ingressoMeia.mostrarInfo();
-        mostrarValorMeia(ingressoMeia, true);
+        mostrarValorMeia(ingressoMeia, temDireito);
+        System.out.println("============================");
+        ingressoFamilia.mostrarInfo();
+        mostrarValorFamilia(ingressoFamilia, membrosFamilia);
     }
     public static void mostrarValorMeia(MeiaEntrada ingresso, boolean temDireito) {
         double valorFinal = ingresso.calcularValor(temDireito);
         if (temDireito) {
-            System.out.println("Você tem direito a meia e seu valor é: " + valorFinal);
-            return;
+            System.out.println("Você tem direito a meia e seu valor é: " + df.format(valorFinal));
         } else {
-            System.out.println("Você não tem direito a meia e seu valor é: " + valorFinal);
-            return;
+            System.out.println("Você não tem direito a meia e seu valor é: " + df.format(valorFinal));
         }
     }
 
     public static void mostrarValorFamilia(IngressoFamilia ingresso, int totalPessoas) {
         double valorFinal = ingresso.calcularValor(totalPessoas);
-        if (totalPessoas) {
-            System.out.println("Você tem mais de 3 membros familiares e ganhou 5% de desconto o valor é " + valorFinal);
-            return;
+        if (totalPessoas > 3) {
+            System.out.println("Você tem mais de 3 membros familiares e ganhou 5% de desconto o valor é " + df.format(valorFinal));
         } else {
-            System.out.println("O valor total do seu ingresso é " + valorFinal);
-            return;
+            System.out.println("O valor total do seu ingresso é " + df.format(valorFinal));
         }
+    }
 }

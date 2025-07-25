@@ -1,6 +1,5 @@
 public class MeiaEntrada extends Ingresso{
 
-
     public MeiaEntrada(String nomeFilme, boolean dublado, Double valorIngresso) {
         super(nomeFilme, dublado, valorIngresso);
     }

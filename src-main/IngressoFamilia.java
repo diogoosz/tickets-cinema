@@ -11,7 +11,7 @@ public class IngressoFamilia extends Ingresso{
     public double calcularValor(int totalPessoas) {
         double total = getValor() * totalPessoas;
         if (totalPessoas > 3 ) {
-            total *= 0.05;
+            total *= 0.95;
             return (total);
         } else {
             return total;
