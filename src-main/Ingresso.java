@@ -2,8 +2,8 @@ import java.text.DecimalFormat;
 
 public class Ingresso {
     DecimalFormat df = new DecimalFormat("#0.00");
-    private String nomeFilme;
-    private boolean dublado;
+    private final String nomeFilme;
+    private final boolean dublado;
     private Double valorIngresso;
 
     public Ingresso(String nomeFilme, boolean dublado, Double valorIngresso) {

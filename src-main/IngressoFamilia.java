@@ -1,11 +1,10 @@
-import java.text.DecimalFormat;
-
-public class IngressoFamilia extends Ingresso{
+public class IngressoFamilia extends Ingresso implements Calculavel<Integer> {
     public IngressoFamilia(String nomeFilme, boolean dublado, Double valorIngresso) {
         super(nomeFilme, dublado, valorIngresso);
     }
 
-    public double calcularValor(int totalPessoas) {
+    @Override
+    public double calcularValor(Integer totalPessoas) {
         double total = getValor() * totalPessoas;
         if (totalPessoas > 3 ) {
             total *= 0.95;
